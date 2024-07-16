@@ -4,7 +4,7 @@ from ragam import Ragam
 from ragam import Parent
 from ragam import Child
 
-ragams = []
+
 
 def isParent(soup):
     
@@ -92,6 +92,7 @@ def getLinks(soup):
 
     
 def main():
+    ragams = []
     url = "https://www.ragasurabhi.com/carnatic-music/ragas.html"
     response = requests.get(url)
 
@@ -147,13 +148,14 @@ def main():
                         
                         # Create child ragam
                         ChildRagam = Child(name, aro, ava, aroAvaFile, signaturefile, carnaticFile, carnaticSong, parentName, melaNumber)
-                        ragams.append(ChildRagam)
-                        
-            for rag in ragams:
-                print(rag.toString())
+                        ragams.append(ChildRagam)              
+        
                 
     else:
         print(f"Failed to retrieve the page: {response.status_code}")
+        
+    return ragams      
 
 if __name__ == "__main__":
-    main()
+    ragamArray = main()
+    
